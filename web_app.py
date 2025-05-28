@@ -12,7 +12,7 @@ from queue import Queue, Empty as queue_Empty
 app = Flask(__name__)
 
 # バージョン情報
-VERSION = "20250527.1244"
+VERSION = "20250528.1633"
 
 # LM Studio APIサーバーの設定を読み込む
 def load_api_config():

@@ -674,15 +674,20 @@ clearButton.addEventListener("click", clearPrompt);
 
 // キーボード操作の処理
 promptInput.addEventListener("keydown", (e) => {
-  // Enterキーだけで送信（ShiftキーやCtrlキーが押されていない場合）
-  if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey) {
-    e.preventDefault();
-    sendPrompt();
-  }
+  // Enterキーでの送信を無効化（送信ボタンのみ有効）
+  // if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey) {
+  //   e.preventDefault();
+  //   sendPrompt();
+  // }
   // Shift + Enterで改行（デフォルト動作をそのまま実行）
-  else if (e.key === "Enter" && e.shiftKey) {
+  if (e.key === "Enter" && e.shiftKey) {
     // デフォルトの改行動作を維持（preventDefault()を呼び出さない）
     setStatus("🔄 改行を追加しました");
+  }
+  // 通常のEnterキーでも改行のみ（送信しない）
+  else if (e.key === "Enter") {
+    // デフォルトの改行動作を維持
+    setStatus("📝 改行しました（送信は送信ボタンを押してください）");
   }
 });
 
