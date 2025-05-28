@@ -1,0 +1,105 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LM Studio チャットボット - 改良版</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- 左サイドバー：プロンプト履歴 -->
+      <div class="sidebar">
+        <div class="prompt-history-section">
+          <h2>📝 プロンプト履歴</h2>
+          <div class="client-info">
+            <div class="client-ip" id="client-ip-display">
+              <span class="ip-label">🌐 接続元:</span>
+              <span class="ip-address" id="client-ip-address">取得中...</span>
+            </div>
+          </div>
+          <div class="history-controls">
+            <button id="clear-history-button">🗑️ 履歴をクリア</button>
+          </div>
+          <div id="prompt-history-list"></div>
+        </div>
+      </div>
+
+      <!-- メインコンテンツエリア -->
+      <div class="container">
+        <header>
+          <h1>🤖 LM Studio チャットボット</h1>
+          <p style="color: #666; margin-top: 10px; font-size: 14px;">
+            改良版 - より使いやすく、より見やすく
+            <span class="speed-info">⚡ 高速化版</span>
+            <span class="version-info">📱 Ver: {{ version }}</span>
+          </p>
+        </header>
+
+        <div class="model-section">
+          <div class="model-header">
+            <label for="model-select">🔧 モデル:</label>
+            <select id="model-select">
+              <option value="">モデルを選択してください</option>
+            </select>
+            <button id="refresh-models">🔄 モデル一覧を更新</button>
+          </div>
+        </div>
+
+        <div class="params-section">
+          <div class="param-group">
+            <label for="temperature">🌡️ Temperature:</label>
+            <input type="range" id="temperature" name="temperature" min="0" max="1" step="0.1" value="0.7" />
+            <span id="temperature-value">0.7</span>
+          </div>
+
+          <div class="param-group">
+            <label for="max-tokens">📊 最大トークン数:</label>
+            <input type="number" id="max-tokens" name="max-tokens" min="10" max="8192" value="4096" />
+          </div>
+
+          <div class="api-type">
+            <label>
+              <input type="radio" name="api-type" value="chat" checked />
+              💬 チャット完了API
+            </label>
+            <label>
+              <input type="radio" name="api-type" value="text" />
+              📝 テキスト完了API
+            </label>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <h2>✍️ プロンプト</h2>
+          <textarea id="prompt-input" placeholder="プロンプトを入力してください...&#10;&#10;💡 ヒント: &#10;• 具体的で明確な指示を心がけましょう&#10;• 例を含めるとより良い結果が得られます&#10;• 文脈や背景情報を提供すると効果的です"></textarea>
+          <div class="keyboard-shortcuts">
+            <span class="shortcut">⚡ <kbd>Enter</kbd> 送信</span>
+            <span class="shortcut">🔄 <kbd>Shift</kbd> + <kbd>Enter</kbd> 改行</span>
+          </div>
+          <div class="button-group">
+            <button id="clear-button">🗑️ クリア</button>
+            <button id="send-button">🚀 送信</button>
+          </div>
+        </div>
+
+        <div class="output-section">
+          <div class="output-header">
+            <h2>💭 回答</h2>
+            <button id="copy-response-btn" class="copy-btn" style="display: none;">📋 コピー</button>
+          </div>
+          <div id="response-output"></div>
+        </div>
+
+        <div id="status-bar">✅ 準備完了</div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
