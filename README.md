@@ -1,6 +1,10 @@
 <!-- @format --> 
 
 # LM Studio API クライアント - 改良版
+- ドキュメント
+  https://deepwiki.com/shimizu8502/LmStudioAppV5
+  
+
 
 このアプリケーションは、LM Studio の API サーバーにプロンプトを送信し、レスポンスを取得するためのシンプルな Python クライアントです。
 **改良版では、プロンプト履歴機能の大幅な改善と、美しい UI デザインが追加されました。**
